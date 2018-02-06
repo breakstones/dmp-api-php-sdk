@@ -5,7 +5,7 @@
  * Time: 19:35
  */
 
-namespace dmp\extend\datasource\services\mysql;
+namespace dmp\extend\datasource\mysql\services;
 
 
 use dmp\extend\datasource\base\interfaces\DataSourceInterface;
@@ -16,9 +16,8 @@ use dmp\extend\datasource\base\models\struct\ObjectQueryBuilder;
 use dmp\extend\datasource\base\models\struct\ObjectStructQueryBuilder;
 use dmp\helper\db\mysql\Connection;
 
-abstract class AbstractMySQLDataSourceService implements DataSourceInterface
+class MySQLDataSourceService implements DataSourceInterface
 {
-
     /**
      * 获取业务参数值
      * @param BizParameterQueryBuilder $builder

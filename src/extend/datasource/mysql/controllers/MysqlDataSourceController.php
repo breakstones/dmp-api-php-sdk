@@ -14,14 +14,14 @@ use dmp\extend\datasource\base\models\data\DataQueryBuilder;
 use dmp\extend\datasource\base\models\struct\BizParameterQueryBuilder;
 use dmp\extend\datasource\base\models\struct\ObjectQueryBuilder;
 use dmp\extend\datasource\base\models\struct\ObjectStructQueryBuilder;
-use dmp\extend\datasource\services\mysql\AbstractMySQLDataSourceService;
+use dmp\extend\datasource\mysql\services\MySQLDataSourceService;
 use dmp\web\controllers\ControllerBase;
 
 class MysqlDataSourceController extends ControllerBase implements DataSourceControllerInterface
 {
     /**
      * mysql数据源业务
-     * @var AbstractMySQLDataSourceService
+     * @var MySQLDataSourceService
      */
     protected $_service;
 
