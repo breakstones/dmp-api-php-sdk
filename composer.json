@@ -1,0 +1,27 @@
+{
+  "name": "mysoft/dmp",
+  "description": "DMP SDK",
+  "type": "library",
+  "authors": [
+    {
+      "name": "wangl10",
+      "email": "wangl10@mingyuanyun.com"
+    }
+  ],
+  "require-dev": {
+    "yiisoft/yii2": "2.0.11.2"
+  },
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "dmp\\": "src/"
+    }
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  }
+}
