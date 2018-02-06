@@ -137,15 +137,4 @@ class Command extends Object
             $this->pdoStatement = null;
         }
     }
-
-    protected function getStructure()
-    {
-        $colCount = $this->pdoStatement->columnCount();
-        $columns = [];
-        for ($i = 0; $i < $colCount; $i++) {
-            $meta = new ColumnMeta($this->pdoStatement->getColumnMeta($i));
-            $columns = $meta;
-        }
-        return $columns;
-    }
 }

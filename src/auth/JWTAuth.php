@@ -31,7 +31,7 @@ class JWTAuth implements AuthInterface
      */
     public function __construct($secret = null)
     {
-        $this->_secret = $secret or getenv('DMP_SECRET');
+        $this->_secret = $secret ?: getenv('DMP_SECRET');
         if (!$this->_secret) {
             throw new AuthException('缺少DMP_SECRET配置');
         }

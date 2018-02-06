@@ -5,7 +5,7 @@
  * Time: 20:50
  */
 
-namespace dmp\extend\datasource\models\query;
+namespace dmp\extend\datasource\base\models\data;
 
 
 use dmp\base\Object;

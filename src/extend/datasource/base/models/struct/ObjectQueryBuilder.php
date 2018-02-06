@@ -1,14 +1,21 @@
 <?php
 /**
  * Created by wangl10@mingyuanyun.com.
- * Date: 2018/2/1
- * Time: 10:18
+ * Date: 2018/2/6
+ * Time: 17:34
  */
 
-namespace dmp\web\models;
+namespace dmp\extend\datasource\base\models\struct;
 
 
-class QueryModelBase extends ModelBase
+use dmp\extend\datasource\base\models\QueryBuilderBase;
+
+/**
+ * 对象查询
+ * Class ObjectQuery
+ * @package dmp\extend\datasource\models\struct
+ */
+class ObjectQueryBuilder extends QueryBuilderBase
 {
     /**
      * 当前页
@@ -34,9 +41,9 @@ class QueryModelBase extends ModelBase
      */
     public $skip = 1;
 
-    public function __construct($autoSetAttributes = true, $config = [])
+    public function init()
     {
-        parent::__construct($autoSetAttributes, $config);
+        parent::init();
         $this->page = intval($this->page);
         if ($this->page < 1) {
             $this->page = 1;

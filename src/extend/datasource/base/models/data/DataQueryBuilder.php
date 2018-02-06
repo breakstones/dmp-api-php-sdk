@@ -5,15 +5,15 @@
  * Time: 19:54
  */
 
-namespace dmp\extend\datasource\models\query;
+namespace dmp\extend\datasource\base\models\data;
 
+use dmp\extend\datasource\base\models\QueryBuilderBase;
 
-use dmp\base\Object;
-
-class QueryBuilder extends Object
+class DataQueryBuilder extends QueryBuilderBase
 {
-    public $biz_params;
-
+    /**
+     * @var QueryStructure
+     */
     public $query_structure;
 
     public function init()

@@ -39,4 +39,10 @@ class ControllerBase extends Controller
             ['class' => 'dmp\web\filters\AuthorizationFilter']
         ];
     }
+
+    public function getRequestParams()
+    {
+        $request = \Yii::$app->request;
+        return $request->isPost ? $request->post() : $request->get();
+    }
 }
