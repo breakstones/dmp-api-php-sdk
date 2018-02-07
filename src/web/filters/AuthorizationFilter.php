@@ -35,9 +35,12 @@ class AuthorizationFilter extends ActionFilter
     public function beforeAction($action)
     {
         if (parent::beforeAction($action)) {
-            $token = Yii::$app->request->cookies->getValue('token');
-            if (!$token) {
-                throw new AuthException('token无效');
+            if (!isset($_COOKIE['token'])) {
+                throw new AuthException('缺少token');
+            }
+            $token = $_COOKIE['token'];
+            if (empty($token)) {
+                throw new AuthException('token为空');
             }
             $res = $this->_jwt->verify($token);
             if (!$res) {
