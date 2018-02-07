@@ -70,10 +70,11 @@ class MySQLDataSourceService implements DataSourceInterface
      * 获取数据
      * @param DataQueryBuilder $builder
      * @return array
+     * @throws \dmp\exception\ArgumentException
      */
     public function getData(DataQueryBuilder $builder)
     {
-        list($sql, $params) = new MySQLDataQueryParser($builder);
+        list($sql, $params) = (new MySQLDataQueryParser($builder))->parser();
         $db = $this->getDataSource($builder);
         return $db->createCommand($sql, $params)->queryAll();
     }
