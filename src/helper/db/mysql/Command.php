@@ -40,7 +40,6 @@ class Command extends Object
         }
         $pdo = $this->db->getPDO();
         $this->pdoStatement = $pdo->prepare($this->sql);
-        echo $this->pdoStatement->queryString;
     }
 
     protected function queryInternal($method, $fetchMode = null)
