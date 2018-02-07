@@ -28,7 +28,7 @@ class ControllerBase extends Controller
      */
     public function jsonData($result = true, $msg = '', $data = null)
     {
-        $jsonObject = ['result' => $result, 'msg' => $msg, '$data' => $data];
+        $jsonObject = ['result' => $result, 'msg' => $msg, 'data' => $data];
         \Yii::$app->response->format = Response::FORMAT_JSON;
         return $jsonObject;
     }
