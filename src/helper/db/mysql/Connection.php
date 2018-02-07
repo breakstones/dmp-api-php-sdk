@@ -7,10 +7,10 @@
 
 namespace dmp\helper\db\mysql;
 
-use dmp\base\Object;
+use dmp\base\BaseObject;
 use PDO;
 
-class Connection extends Object
+class Connection extends BaseObject
 {
     protected $host = '';
     protected $port = 3306;

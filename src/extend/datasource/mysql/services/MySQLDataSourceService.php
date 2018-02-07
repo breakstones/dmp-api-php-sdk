@@ -62,7 +62,7 @@ class MySQLDataSourceService implements DataSourceInterface
                 FROM information_schema.COLUMNS 
                 WHERE TABLE_SCHEMA =DATABASE() AND TABLE_NAME=:table_name
                 ORDER BY ORDINAL_POSITION';
-        $params = [':table_name' => $builder->object_name];
+        $params = [':table_name' => $builder->obj_name];
         return $db->createCommand($sql, $params)->queryAll();
     }
 
@@ -73,7 +73,9 @@ class MySQLDataSourceService implements DataSourceInterface
      */
     public function getData(DataQueryBuilder $builder)
     {
-        return [];
+        list($sql, $params) = new MySQLDataQueryParser($builder);
+        $db = $this->getDataSource($builder);
+        return $db->createCommand($sql, $params)->queryAll();
     }
 
 

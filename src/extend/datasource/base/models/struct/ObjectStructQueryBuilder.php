@@ -19,8 +19,8 @@ use dmp\extend\datasource\base\models\QueryBuilderBase;
 class ObjectStructQueryBuilder extends QueryBuilderBase
 {
     /**
-     * 表名
+     * 对象名称
      * @var string
      */
-    public $object_name;
+    public $obj_name;
 }

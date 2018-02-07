@@ -7,25 +7,29 @@
 
 namespace dmp\extend\datasource\base\models\data;
 
+use dmp\base\BaseObject;
 
-use dmp\base\Object;
-
-class Table extends Object
+/**
+ * 查询对象
+ * Class Object
+ * @package dmp\extend\datasource\base\models\data
+ */
+class Object extends BaseObject
 {
     /**
-     * 表名
+     * 名称
      * @var string
      */
-    public $table_name;
+    public $name;
 
     /**
-     * 连接类型
+     * 关联类型
      * @var string
      */
     public $join_type;
 
     /**
-     * 连接条件
+     * 关联条件
      * @var array
      */
     public $ref_clause;

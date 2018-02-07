@@ -8,21 +8,21 @@
 namespace dmp\extend\datasource\base\models\data;
 
 
-use dmp\base\Object;
+use dmp\base\BaseObject;
 
-class Order extends Object
+class Order extends BaseObject
 {
     /**
-     * 表名
+     * 对象名称
      * @var string
      */
-    public $table_name;
+    public $obj_name;
 
     /**
-     * 列名
+     * 属性名称
      * @var string
      */
-    public $col_name;
+    public $prop_name;
 
     /**
      * 排序方法：AES|DESC

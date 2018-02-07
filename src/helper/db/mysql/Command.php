@@ -7,10 +7,10 @@
 
 namespace dmp\helper\db\mysql;
 
-use dmp\base\Object;
+use dmp\base\BaseObject;
 use PDO;
 
-class Command extends Object
+class Command extends BaseObject
 {
 
     /**

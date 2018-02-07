@@ -8,23 +8,23 @@
 namespace dmp\extend\datasource\base\models\data;
 
 
-use dmp\base\Object;
+use dmp\base\BaseObject;
 
-class QueryStructure extends Object
+class QueryStructure extends BaseObject
 {
     /**
      * 列
      * @var array
-     * list of Column
+     * list of Property
      */
     public $select;
 
     /**
      * 表
      * @var array
-     * list of Table
+     * list of \dmp\extend\datasource\base\models\data\Object
      */
-    public $from;
+    public $object;
 
     /**
      * 条件
@@ -36,7 +36,7 @@ class QueryStructure extends Object
     /**
      * 分组
      * @var array
-     * list of Column
+     * list of Property
      */
     public $group_by;
 
@@ -63,10 +63,10 @@ class QueryStructure extends Object
     public function init()
     {
         parent::init();
-        $this->transformArrayToObject('select', __NAMESPACE__ . '\Column', true);
-        $this->transformArrayToObject('from', __NAMESPACE__ . '\Table', true);
+        $this->transformArrayToObject('select', __NAMESPACE__ . '\Property', true);
+        $this->transformArrayToObject('object', __NAMESPACE__ . '\Object', true);
         $this->transformArrayToObject('where', __NAMESPACE__ . '\Condition', true);
-        $this->transformArrayToObject('group_by', __NAMESPACE__ . '\Column', true);
+        $this->transformArrayToObject('group_by', __NAMESPACE__ . '\Property', true);
         $this->transformArrayToObject('having', __NAMESPACE__ . '\Condition', true);
         $this->transformArrayToObject('order_by', __NAMESPACE__ . '\Order', true);
         $this->transformArrayToObject('limit', __NAMESPACE__ . '\Limit');

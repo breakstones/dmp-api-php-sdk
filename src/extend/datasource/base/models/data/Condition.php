@@ -8,9 +8,9 @@
 namespace dmp\extend\datasource\base\models\data;
 
 
-use dmp\base\Object;
+use dmp\base\BaseObject;
 
-class Condition extends Object
+class Condition extends BaseObject
 {
     /**
      * 逻辑关系 ：AND|OR，没有关联默认为空
@@ -20,7 +20,7 @@ class Condition extends Object
 
     /**
      * 左边表达式
-     * @var string|integer|Column
+     * @var string|integer|Property
      */
     public $left;
 
@@ -32,7 +32,7 @@ class Condition extends Object
 
     /**
      * 右边表达式
-     * @var string|integer|Column
+     * @var string|integer|Property
      */
     public $right;
 
@@ -45,8 +45,8 @@ class Condition extends Object
     public function init()
     {
         parent::init();
-        $this->transformArrayToObject('left', __NAMESPACE__ . '\Column');
-        $this->transformArrayToObject('right', __NAMESPACE__ . '\Column');
+        $this->transformArrayToObject('left', __NAMESPACE__ . '\Property');
+        $this->transformArrayToObject('right', __NAMESPACE__ . '\Property');
         $this->transformArrayToObject('conditions', __NAMESPACE__ . '\Condition', true);
     }
 }

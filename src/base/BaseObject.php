@@ -8,7 +8,7 @@
 namespace dmp\base;
 
 
-class Object
+class BaseObject
 {
     public function __construct($properties = [])
     {

@@ -8,19 +8,19 @@
 namespace dmp\extend\datasource\base\models\data;
 
 
-use dmp\base\Object;
+use dmp\base\BaseObject;
 
-class Limit extends Object
+class Limit extends BaseObject
 {
     /**
      * 位移行数
      * @var integer
      */
-    public $offset;
+    public $offset = 0;
 
     /**
      * 获取行数
      * @var integer
      */
-    public $row;
+    public $row = 10;
 }

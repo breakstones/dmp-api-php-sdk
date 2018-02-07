@@ -8,13 +8,13 @@
 namespace dmp\extend\datasource\base\models;
 
 
-use dmp\base\Object;
+use dmp\base\BaseObject;
 
-class QueryBuilderBase extends Object
+class QueryBuilderBase extends BaseObject
 {
     /**
      * 自定义参数
      * @var array
      */
-    public $biz_prams;
+    public $biz_params;
 }
