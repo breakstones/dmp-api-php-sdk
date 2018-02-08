@@ -43,6 +43,13 @@ class ControllerBase extends Controller
     public function getRequestParams()
     {
         $request = \Yii::$app->request;
-        return $request->isPost ? $request->post() : $request->get();
+        $params = $request->isPost ? $request->post() : $request->get();
+        if (empty($params)) {
+            $rawBody = $request->getRawBody();
+            if (!empty($rawBody)) {
+                $params = json_decode($rawBody, true);
+            }
+        }
+        return $params;
     }
 }
