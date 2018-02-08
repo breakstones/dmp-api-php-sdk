@@ -143,10 +143,23 @@ class MySQLDataQueryParser
                 $str .= "`{$property->obj_name}`.";
             }
             $str .= "`{$property->prop_name}`";
-        } else if (!empty($property->value)) {
-            $paramName = $this->getParamName();
-            $this->_params[$paramName] = $property->value;
-            $str .= $paramName;
+        } else if (empty($property->func) && empty($property->props)) {
+            if ($property->value === null) {
+                $str .= ' NULL ';
+            } else if (is_array($property->value)) {
+                $setParams = [];
+                foreach ($property->value as $value) {
+                    $paramName = $this->getParamName();
+                    $this->_params[$paramName] = $value;
+                    $setParams[] = $paramName;
+
+                }
+                $str .= '(' . join(',', $setParams) . ')';
+            } else {
+                $paramName = $this->getParamName();
+                $this->_params[$paramName] = $property->value;
+                $str .= $paramName;
+            }
         }
         //解析别名
         if (!empty($property->alias)) {
@@ -156,6 +169,7 @@ class MySQLDataQueryParser
     }
 
     /**
+     * 解析关联表
      * @return array
      * @throws ArgumentException
      */
@@ -176,6 +190,7 @@ class MySQLDataQueryParser
     }
 
     /**
+     * 解析关联表内容
      * @param Obj $obj
      * @return string
      * @throws ArgumentException
@@ -202,6 +217,7 @@ class MySQLDataQueryParser
     }
 
     /**
+     * 解析条件表达式
      * @param Condition $condition
      * @return string
      * @throws ArgumentException
@@ -228,6 +244,7 @@ class MySQLDataQueryParser
     }
 
     /**
+     * 解析条件
      * @return string
      * @throws ArgumentException
      */
@@ -244,6 +261,7 @@ class MySQLDataQueryParser
     }
 
     /**
+     * 解析分组
      * @return string
      */
     private function parserGroupBy()
@@ -260,6 +278,7 @@ class MySQLDataQueryParser
     }
 
     /**
+     * 解析结果筛选
      * @return string
      * @throws ArgumentException
      */
@@ -275,6 +294,10 @@ class MySQLDataQueryParser
         return $res;
     }
 
+    /**
+     * 解析排序
+     * @return string
+     */
     private function parserOrderBy()
     {
         $res = [];
@@ -291,6 +314,10 @@ class MySQLDataQueryParser
         return join(',', $res);
     }
 
+    /**
+     * 解析限制行
+     * @return string
+     */
     private function parserLimit()
     {
         $res = '';
