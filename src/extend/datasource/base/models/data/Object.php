@@ -23,7 +23,7 @@ class Object extends BaseObject
     public $name;
 
     /**
-     * 关联类型
+     * 关联类型:LEFT、RIGHT、INNER，默认为空
      * @var string
      */
     public $join_type;
@@ -31,6 +31,7 @@ class Object extends BaseObject
     /**
      * 关联条件
      * @var array
+     * list of dmp\extend\datasource\base\models\data\Condition
      */
     public $ref_clause;
 

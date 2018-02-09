@@ -45,7 +45,7 @@ class Command extends BaseObject
     protected function queryInternal($method, $fetchMode = null)
     {
         $this->_execute();
-        $result = call_user_func_array([$this->pdoStatement, $method], ['mode' => $fetchMode ?: PDO::FETCH_ASSOC]);
+        $result = call_user_func_array([$this->pdoStatement, $method], ['mode' => $fetchMode === null ? PDO::FETCH_ASSOC : $fetchMode]);
         return $result;
     }
 

@@ -12,5 +12,9 @@ use dmp\extend\datasource\base\models\QueryBuilderBase;
 
 class BizParameterQueryBuilder extends QueryBuilderBase
 {
+    /**
+     * 关键字
+     * @var string
+     */
     public $name;
 }

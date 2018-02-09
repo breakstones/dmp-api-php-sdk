@@ -36,7 +36,7 @@ class MySQLDataSourceService implements DataSourceInterface
     public function getObjects(ObjectQueryBuilder $builder)
     {
         $db = $this->getDataSource($builder);
-        $sql = 'SELECT SQL_CALC_FOUND_ROWS TABLE_NAME AS `name`,TABLE_COMMENT AS `comment`,TABLE_TYPE
+        $sql = 'SELECT SQL_CALC_FOUND_ROWS TABLE_NAME AS `name`,TABLE_COMMENT AS `comment`,TABLE_TYPE AS `type`
                 FROM information_schema.TABLES
                 WHERE TABLE_SCHEMA =DATABASE() ';
         $params = [];
@@ -46,7 +46,7 @@ class MySQLDataSourceService implements DataSourceInterface
         }
         $sql .= 'LIMIT ' . $builder->skip . ',' . $builder->page_size;
         $items = $db->createCommand($sql, $params)->queryAll();
-        $total = $db->createCommand('SELECT FOUND_ROWS() AS total;')->queryScalar();
+        $total = intval($db->createCommand('SELECT FOUND_ROWS() AS total;')->queryScalar());
         return ['items' => $items, 'total' => $total];
     }
 

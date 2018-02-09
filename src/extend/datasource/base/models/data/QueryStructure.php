@@ -71,4 +71,22 @@ class QueryStructure extends BaseObject
         $this->transformArrayToObject('order_by', __NAMESPACE__ . '\Order', true);
         $this->transformArrayToObject('limit', __NAMESPACE__ . '\Limit');
     }
+
+    /**
+     * 获取当前关联的表名
+     * @return array
+     */
+    public function getObjectNames()
+    {
+        $names = [];
+        if (!empty($this->object) and is_array($this->object)) {
+            foreach ($this->object as $obj) {
+                if (!($obj instanceof Object)) {
+                    continue;
+                }
+                $names[] = $obj->name;
+            }
+        }
+        return $names;
+    }
 }

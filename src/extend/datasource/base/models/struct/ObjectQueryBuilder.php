@@ -57,6 +57,6 @@ class ObjectQueryBuilder extends QueryBuilderBase
 
     public function getKeywordEscape()
     {
-        return str_replace('_', '\\_', $this->keyword) ? !empty($this->keyword) : $this->keyword;
+        return !empty($this->keyword) ? str_replace('_', '\\_', $this->keyword) : $this->keyword;
     }
 }
