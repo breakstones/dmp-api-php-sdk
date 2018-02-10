@@ -7,12 +7,14 @@
 
 namespace dmp\extend\datasource\base\models\struct;
 
+use dmp\base\BaseObject;
+
 /**
  * 数据源及数据集自定义参数
  * Class BizParameter
  * @package dmp\extend\datasource\base\models\struct
  */
-class BizParameter
+class BizParameter extends BaseObject
 {
     /**
      * 参数类型:dynamic、fixed
