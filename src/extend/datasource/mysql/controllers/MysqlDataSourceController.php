@@ -11,7 +11,6 @@ namespace dmp\extend\datasource\mysql\controllers;
 use dmp\di\Container;
 use dmp\extend\datasource\base\interfaces\DataSourceControllerInterface;
 use dmp\extend\datasource\base\models\data\DataQueryBuilder;
-use dmp\extend\datasource\base\models\struct\BizParameterQueryBuilder;
 use dmp\extend\datasource\base\models\struct\ObjectQueryBuilder;
 use dmp\extend\datasource\base\models\struct\ObjectStructQueryBuilder;
 use dmp\extend\datasource\mysql\services\MySQLDataSourceService;
@@ -43,11 +42,10 @@ class MysqlDataSourceController extends ControllerBase implements DataSourceCont
      * 获取业务参数
      * @return mixed
      */
-    public function actionGetBizParamValue()
+    public function actionGetBizParams()
     {
         try {
-            $builder = new BizParameterQueryBuilder($this->getRequestParams());
-            return $this->jsonData(true, 'success', $this->_service->getBizParamValue($builder));
+            return $this->jsonData(true, 'success', $this->_service->getBizParams());
         } catch (\Exception $ex) {
             return $this->jsonData(false, $ex->getMessage());
         }

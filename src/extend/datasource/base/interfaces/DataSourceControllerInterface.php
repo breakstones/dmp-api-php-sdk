@@ -18,7 +18,7 @@ interface DataSourceControllerInterface
      * 获取业务参数
      * @return mixed
      */
-    public function actionGetBizParamValue();
+    public function actionGetBizParams();
 
     /**
      * 获取对象

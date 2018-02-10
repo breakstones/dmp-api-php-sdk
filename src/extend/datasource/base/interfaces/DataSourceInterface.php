@@ -9,7 +9,6 @@ namespace dmp\extend\datasource\base\interfaces;
 
 use dmp\extend\datasource\base\models\data\DataQueryBuilder;
 use dmp\extend\datasource\base\models\QueryBuilderBase;
-use dmp\extend\datasource\base\models\struct\BizParameterQueryBuilder;
 use dmp\extend\datasource\base\models\struct\ObjectQueryBuilder;
 use dmp\extend\datasource\base\models\struct\ObjectStructQueryBuilder;
 
@@ -23,10 +22,10 @@ interface DataSourceInterface
 {
     /**
      * 获取业务参数值
-     * @param BizParameterQueryBuilder $builder
-     * @return mixed
+     * @return array
+     * list of dmp\extend\datasource\base\models\struct\BizParameter
      */
-    public function getBizParamValue(BizParameterQueryBuilder $builder);
+    public function getBizParams();
 
     /**
      * 获取对象
