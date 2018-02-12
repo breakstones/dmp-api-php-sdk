@@ -17,17 +17,28 @@ use dmp\base\BaseObject;
 class BizParameter extends BaseObject
 {
     /**
-     * 参数类型:dynamic、fixed
-     * dynamic：动态参数，从DMP平台中自由选择内置变量，或者请求参数
+     * 参数类型:sys、query、fixed，必须参数
+     * sys:DMP平台内置参数
+     * query:URL参数
      * fixed:固定参数，可以自定义，或从default_value中选取
      * @var string
      */
-    public $type = 'dynamic';
+    public $type = 'fixed';
+
+    /**
+     * 参数名称关键字，申明时可为空
+     * type='sys':可参考DMP平台中的内置参数列表
+     * type='query':URL参数名称，具体可以参考查看报告时URL参数列表
+     * type='fixed':此关键字则不会解析
+     * @var string
+     */
+    public $key = '';
 
     /**
      * 参数范围:all,datasource,dataset
      * all:所有范围，在DMP平台中的数据源与数据集中均可以定义
-     * datasource:
+     * datasource:只在数据源管理时可被定义
+     * dataset:只在数据集管理时可被定义
      * @var string
      */
     public $range = 'all';
