@@ -17,7 +17,7 @@ putenv('DMP_SECRET=1234567890123456');
 
 ```
 
-#### 2.继承数据源标准Controller
+#### 3.继承数据源标准Controller
 SDK中的Controller目前是基于Yii 2.0 实现。
 若与现有使用框架不匹配，则自己实现dmp\extend\datasource\base\interfaces\DataSourceControllerInterface即可。
 
@@ -33,7 +33,7 @@ class DataSourceController extends MysqlDataSourceController
 
 ```
 
-#### 3.实现数据源服务关键代码
+#### 4.实现数据源服务关键代码
 DataSourceService.php
 
 ```php
