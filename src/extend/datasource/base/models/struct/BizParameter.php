@@ -20,7 +20,7 @@ class BizParameter extends BaseObject
      * 参数类型:sys、query、fixed，必须参数
      * sys:DMP平台内置参数
      * query:URL参数
-     * fixed:固定参数，可以自定义，或从default_value中选取
+     * fixed:固定参数，可以自定义，或从values中选择
      * @var string
      */
     public $type = 'fixed';
