@@ -304,11 +304,11 @@ class MySQLDataQueryParser
         $order = $this->queryBuilder->query_structure->order_by;
         if (!empty($order) && is_array($order)) {
             foreach ($order as $item) {
-                if (!($item instanceof Order)) {
+                if (!($item instanceof Order) || (empty($item->obj_name) && empty($item->prop_name))) {
                     continue;
                 }
                 $method = $item->method ?: '';
-                $res[] = " `{$item->obj_name}`.`{$item->prop_name}` {$method}";
+                $res[] = ' ' . (empty($item->obj_name) ? '' : "`{$item->obj_name}`.") . "`{$item->prop_name}` {$method}";
             }
         }
         return join(',', $res);
