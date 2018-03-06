@@ -27,6 +27,18 @@ class Command extends BaseObject
     public $sql;
     public $params = [];
 
+    private static $transformType = [
+        'TINY' => 'intval',
+        'SHORT' => 'intval',
+        'INT24' => 'intval',
+        'LONG' => 'intval',
+        'BIT' => 'intval',
+        'LONGLONG' => 'intval',
+        'DOUBLE' => 'doubleval',
+        'FLOAT' => 'floatval',
+        'NEWDECIMAL' => 'doubleval'
+    ];
+
     public function init()
     {
         parent::init();
@@ -62,12 +74,12 @@ class Command extends BaseObject
     public function queryOne($fetchMode = null)
     {
         $this->safeBuildLimit(0, 1);
-        return $this->queryInternal('fetch', $fetchMode);
+        return $this->transformResult($this->queryInternal('fetch', $fetchMode));
     }
 
     public function queryAll($fetchMode = null)
     {
-        return $this->queryInternal('fetchAll', $fetchMode);
+        return $this->transformResult($this->queryInternal('fetchAll', $fetchMode), false);
     }
 
     public function queryScalar()
@@ -128,6 +140,54 @@ class Command extends BaseObject
         ];
         $type = gettype($data);
         return isset($typeMap[$type]) ? $typeMap[$type] : PDO::PARAM_STR;
+    }
+
+    private function transformResult($res, $oneDim = true)
+    {
+        if (!is_array($res) || count($res) == 0) {
+            return $res;
+        }
+        $transformColumnType = $this->getTransformColumnType();
+        if (count($transformColumnType) == 0) {
+            return $res;
+        }
+        if ($oneDim) {
+            $data = [&$res];
+        } else {
+            $data = &$res;
+        }
+        foreach ($data as &$item) {
+            foreach ($item as $name => &$value) {
+                if (!isset($transformColumnType[$name])) {
+                    continue;
+                }
+                $this->transformData($transformColumnType[$name], $value);
+            }
+        }
+        return $res;
+    }
+
+    private function transformData($columnType, &$value)
+    {
+        if (!isset(self::$transformType[$columnType])) {
+            return;
+        }
+        $transformFunc = self::$transformType[$columnType];
+        $value = $transformFunc($value);
+    }
+
+    private function getTransformColumnType()
+    {
+        $transformColumnType = [];
+        $columnCount = $this->pdoStatement->columnCount();
+        for ($i = 0; $i < $columnCount; $i++) {
+            $meta = $this->pdoStatement->getColumnMeta($i);
+            $nativeType = $meta['native_type'];
+            if (isset(self::$transformType[$nativeType])) {
+                $transformColumnType[$meta['name']] = $nativeType;
+            }
+        }
+        return $transformColumnType;
     }
 
     public function __destruct()
