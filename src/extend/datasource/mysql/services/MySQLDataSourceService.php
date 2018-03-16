@@ -40,7 +40,7 @@ class MySQLDataSourceService implements DataSourceInterface
                 WHERE TABLE_SCHEMA =DATABASE() ';
         $params = [];
         if (!empty($builder->keyword)) {
-            $sql .= 'AND TABLE_NAME LIKE :keyword ';
+            $sql .= 'AND (TABLE_NAME LIKE :keyword OR TABLE_COMMENT LIKE :keyword) ';
             $params[':keyword'] = '%' . $builder->getKeywordEscape() . '%';
         }
         $sql .= 'LIMIT ' . $builder->skip . ',' . $builder->page_size;
